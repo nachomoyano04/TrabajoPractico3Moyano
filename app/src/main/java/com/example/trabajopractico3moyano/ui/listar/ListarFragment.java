@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.trabajopractico3moyano.MainActivity;
 import com.example.trabajopractico3moyano.R;
 import com.example.trabajopractico3moyano.databinding.FragmentListarBinding;
 import com.example.trabajopractico3moyano.modelo.Nota;
@@ -27,7 +28,6 @@ public class ListarFragment extends Fragment {
 
     private ListarViewModel mViewModel;
     private FragmentListarBinding binding;
-    private ListarNotaAdapter adapter;
 
     public static ListarFragment newInstance() {
         return new ListarFragment();
@@ -39,24 +39,23 @@ public class ListarFragment extends Fragment {
         binding = FragmentListarBinding.inflate(inflater, container, false);
         mViewModel = new ViewModelProvider(requireActivity()).get(ListarViewModel.class);
 
-        adapter = new ListarNotaAdapter(new ArrayList<>(), inflater);
+        ListarNotaAdapter adapter = new ListarNotaAdapter(MainActivity.getNotas(), inflater);
 //        GridLayoutManager grid = new GridLayoutManager(getContext(), 1, GridLayoutManager.VERTICAL, false);
         binding.rvNotas.setAdapter(adapter);
         binding.rvNotas.setLayoutManager(new LinearLayoutManager(getContext()));
-
+//        adapter.setNotas(mViewModel.getMNotas().getValue());
         mViewModel.getMNotas().observe(getViewLifecycleOwner(), new Observer<List<Nota>>() {
             @Override
             public void onChanged(List<Nota> notas) {
                 if (notas != null) {
                     Log.d("ListarFragment", "Notas recibidas: " + notas.size()); // Verifica si notas no es null y tiene tamaño
-                    adapter.setNotas(notas); // Actualiza el adaptador con la nueva lista de notas
+//                    adapter.setNotas(notas); // Actualiza el adaptador con la nueva lista de notas
+                    MainActivity.setNotas((ArrayList<Nota>) notas);
                 } else {
                     Log.d("ListarFragment", "Notas son null");
                 }
             }
         });
-
-
         return binding.getRoot();
     }
 

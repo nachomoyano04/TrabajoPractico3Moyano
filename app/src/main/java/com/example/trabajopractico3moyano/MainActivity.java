@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
 
+import com.example.trabajopractico3moyano.modelo.Nota;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -16,10 +17,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.trabajopractico3moyano.databinding.ActivityMainBinding;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
+    private static ArrayList<Nota> notas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +52,23 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+    }
+
+    public static void addNotas(Nota nota){
+        if(notas == null){
+            notas = new ArrayList<>();
+        }
+        notas.add(nota);
+    }
+
+    public static void setNotas(ArrayList<Nota>listaNotas){
+        notas = listaNotas;
+    }
+    public static ArrayList<Nota> getNotas(){
+        if(notas == null){
+            notas = new ArrayList<>();
+        }
+        return notas;
     }
 
     @Override

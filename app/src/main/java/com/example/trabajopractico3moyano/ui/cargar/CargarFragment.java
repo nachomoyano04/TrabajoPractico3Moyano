@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.trabajopractico3moyano.MainActivity;
 import com.example.trabajopractico3moyano.R;
 import com.example.trabajopractico3moyano.databinding.FragmentCargarBinding;
 import com.example.trabajopractico3moyano.modelo.Nota;
@@ -39,6 +40,7 @@ public class CargarFragment extends Fragment {
             public void onClick(View view) {
                 String nombreNota = binding.etNombreNota.getText().toString();
                 String contenidoNota = binding.etNuevaNota.getText().toString();
+                MainActivity.addNotas(new Nota(nombreNota, contenidoNota));
                 mViewModel.cargarNota(new Nota(nombreNota, contenidoNota));
                 binding.etNombreNota.setText("");
                 binding.etNuevaNota.setText("");

@@ -39,10 +39,10 @@ public class ListarNotaAdapter extends RecyclerView.Adapter<ListarNotaAdapter.Vi
         return notas == null ? 0 : notas.size();
     }
 
-    public void setNotas(List<Nota> notas) {
-        this.notas = notas;
-        notifyDataSetChanged();
-    }
+//    public void setNotas(List<Nota> notas) {
+//        this.notas = notas;
+//        notifyDataSetChanged();
+//    }
     public class ViewHolderListarNota extends RecyclerView.ViewHolder{
         TextView tvContenidoNota, tvNombreNota;
 
