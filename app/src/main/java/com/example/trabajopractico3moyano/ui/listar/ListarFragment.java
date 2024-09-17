@@ -40,19 +40,14 @@ public class ListarFragment extends Fragment {
         mViewModel = new ViewModelProvider(requireActivity()).get(ListarViewModel.class);
 
         ListarNotaAdapter adapter = new ListarNotaAdapter(MainActivity.getNotas(), inflater);
-//        GridLayoutManager grid = new GridLayoutManager(getContext(), 1, GridLayoutManager.VERTICAL, false);
+        GridLayoutManager grid = new GridLayoutManager(getContext(), 1, GridLayoutManager.VERTICAL, false);
         binding.rvNotas.setAdapter(adapter);
-        binding.rvNotas.setLayoutManager(new LinearLayoutManager(getContext()));
-//        adapter.setNotas(mViewModel.getMNotas().getValue());
+        binding.rvNotas.setLayoutManager(grid);
         mViewModel.getMNotas().observe(getViewLifecycleOwner(), new Observer<List<Nota>>() {
             @Override
             public void onChanged(List<Nota> notas) {
                 if (notas != null) {
-                    Log.d("ListarFragment", "Notas recibidas: " + notas.size()); // Verifica si notas no es null y tiene tamaño
-//                    adapter.setNotas(notas); // Actualiza el adaptador con la nueva lista de notas
                     MainActivity.setNotas((ArrayList<Nota>) notas);
-                } else {
-                    Log.d("ListarFragment", "Notas son null");
                 }
             }
         });

@@ -23,7 +23,7 @@ import com.example.trabajopractico3moyano.ui.listar.ListarViewModel;
 
 public class CargarFragment extends Fragment {
 
-    private ListarViewModel mViewModel;
+//    private ListarViewModel mViewModel;
     private FragmentCargarBinding binding;
 
     public static CargarFragment newInstance() {
@@ -33,7 +33,7 @@ public class CargarFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        mViewModel = new ViewModelProvider(requireActivity()).get(ListarViewModel.class);
+//        mViewModel = new ViewModelProvider(requireActivity()).get(ListarViewModel.class);
         binding = FragmentCargarBinding.inflate(inflater, container, false);
         binding.btnGuardarNota.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,7 +41,7 @@ public class CargarFragment extends Fragment {
                 String nombreNota = binding.etNombreNota.getText().toString();
                 String contenidoNota = binding.etNuevaNota.getText().toString();
                 MainActivity.addNotas(new Nota(nombreNota, contenidoNota));
-                mViewModel.cargarNota(new Nota(nombreNota, contenidoNota));
+//                mViewModel.cargarNota(new Nota(nombreNota, contenidoNota));
                 binding.etNombreNota.setText("");
                 binding.etNuevaNota.setText("");
                 Toast.makeText(getContext(), "Nota guardada con éxito", Toast.LENGTH_SHORT).show();
@@ -53,7 +53,7 @@ public class CargarFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(ListarViewModel.class);
+//        mViewModel = new ViewModelProvider(this).get(ListarViewModel.class);
         // TODO: Use the ViewModel
     }
 }
